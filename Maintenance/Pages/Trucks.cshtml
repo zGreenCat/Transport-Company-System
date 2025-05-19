@@ -1,0 +1,19 @@
+﻿@page
+@model Maintenance.Pages.TrucksModel
+@{
+}
+<div class="text-center">
+    <h1 class="display-4">Listado de Camiones</h1>
+
+</div>
+
+<table class="table table-bordered">
+
+    <tr><th>Id</th><th>Modelo</th><th>Marca</th><th>Estado</th></tr>
+
+    @foreach (Truck t in Model.Trucks)
+    {
+        <tr><td>@t.Id</td><td>@t.Model</td><td>@t.Brand</td><td>@t.Status</td></tr>
+    }
+
+</table>

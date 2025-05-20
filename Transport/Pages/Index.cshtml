@@ -4,7 +4,83 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row mb-4 justify-content-center">
+    <div class="col-md-3">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <h6 class="card-title">Viajes totales</h6>
+                <p class="fs-2">@Model.TotalTrips</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <h6 class="card-title">En curso</h6>
+                <p class="fs-2">@Model.TripsInProgress</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-secondary mb-3">
+            <div class="card-body">
+                <h6 class="card-title">Completados</h6>
+                <p class="fs-2">@Model.CompletedTrips</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-5 justify-content-center">
+    <div class="col-md-4">
+        <a href="/Travels" class="btn btn-outline-primary w-100 py-3">
+            <i class="bi-list-ul me-2"></i> Ver todos los viajes
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="/registerTravel" class="btn btn-outline-success w-100 py-3">
+            <i class="bi-plus-circle me-2"></i> Nuevo viaje
+        </a>
+    </div>
+</div>
+<div class="card card-trips">
+    <div class="card-header bg-info text-white">
+        <h5 class="mb-0">Últimos Viajes</h5>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Camión</th>
+                        <th>Destino</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var v in Model.RecentTrips)
+                    {
+                        <tr>
+                            <td>@v.Id</td>
+                            <td>@v.IdTruckNavigation.Brand @v.IdTruckNavigation.Model</td>
+                            <td>@v.Destination</td>
+                            <td>@v.Date.ToString("dd/MM/yyyy")</td>
+                            <td>
+                                <form method="post" asp-page-handler="UpdateTripStatus" class="d-inline-block">
+                                    <input type="hidden" asp-for="TripId" value="@v.Id" />
+                                    <select asp-for="NewStatus" class="form-select form-select-sm" onchange="this.form.submit()">
+                                        @foreach (var s in Model.StatusOptions)
+                                        {
+                                            <option value="@s" selected="@(s==v.Status ? "selected":null)">@s</option>
+                                        }
+                                    </select>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

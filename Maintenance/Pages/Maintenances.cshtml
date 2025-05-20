@@ -1,0 +1,25 @@
+﻿@page
+@model Maintenance.Pages.MaintenancesModel
+@{
+}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Modelo del camion</th>
+            <th>Fecha</th>
+            <th>Descripcion</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model.SuppRegisterList)
+        {
+            <tr>
+                <td>@s.Id</td>
+                <td>@s.TruckId</td>
+                <td>@s.Date</td>
+                <td>@s.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>

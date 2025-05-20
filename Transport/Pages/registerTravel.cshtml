@@ -1,0 +1,36 @@
+﻿@page
+@model Transport.Pages.registerTravelModel
+@{
+}
+<h2>Registrar Viaje</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="TruckId" class="form-label">Camión</label>
+        <select asp-for="TruckId"
+                class="form-select"
+                asp-items="Model.TruckOptions">
+            <option value="">-- Seleccione un camión --</option>
+        </select>
+        <span asp-validation-for="TruckId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Date" class="form-label">Fecha</label>
+        <input asp-for="Date"
+               type="date"
+               class="form-control" />
+        <span asp-validation-for="Date" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Destination" class="form-label">Destino</label>
+        <input asp-for="Destination"
+                  class="form-control"
+                  rows="3">
+    </input>
+        <span asp-validation-for="Destination" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>

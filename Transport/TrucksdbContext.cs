@@ -66,9 +66,6 @@ public partial class TrucksdbContext : DbContext
                 .HasMaxLength(150)
                 .HasColumnName("destination");
             entity.Property(e => e.IdTruck).HasColumnName("id_truck");
-            entity.Property(e => e.NameCliente)
-                .HasMaxLength(100)
-                .HasColumnName("name_cliente");
             entity.Property(e => e.Status)
                 .HasMaxLength(50)
                 .HasColumnName("status");

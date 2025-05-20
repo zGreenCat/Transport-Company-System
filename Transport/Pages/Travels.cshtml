@@ -1,0 +1,43 @@
+﻿@page
+@model Transport.Pages.TravelsModel
+@{
+    var estados = new[] { "Terminado", "Iniciado"};
+}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Id Camion</th>
+            <th>Fecha</th>
+            <th>Destino</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in Model.Travels)
+        {
+            <tr>
+                <td>@t.Id</td>
+                <td>@t.IdTruck</td>
+                <td>@t.Date</td>
+                <td>@t.Destination</td>
+                <td>
+                    <form method="post" asp-page-handler="UpdateStatus">
+                        <input type="hidden" asp-for="TravelId" value="@t.Id" />
+
+                        <select asp-for="newStatus"
+                                class="form-select form-select-sm"
+                                onchange="this.form.submit()">
+                            @foreach (var e in estados)
+                            {
+                                <option value="@e" selected="@(e == t.Status ? "selected" : null)">
+                                    @e
+                                </option>
+                            }
+                        </select>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

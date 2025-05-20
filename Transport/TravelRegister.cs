@@ -9,8 +9,6 @@ public partial class TravelRegister
 
     public int IdTruck { get; set; }
 
-    public string NameCliente { get; set; } = null!;
-
     public DateOnly Date { get; set; }
 
     public string Destination { get; set; } = null!;

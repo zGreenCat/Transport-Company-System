@@ -4,39 +4,47 @@
     var estados = new[] { "Disponible", "En viaje", "Malo", "En reparacion" };
 }
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Modelo</th>
-            <th>Marca</th>
-            <th>Estado</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var t in Model.Trucks)
-        {
-            <tr>
-                <td>@t.Id</td>
-                <td>@t.Model</td>
-                <td>@t.Brand</td>
-                <td>
-                    <form method="post" asp-page-handler="UpdateStatus">
-                        <input type="hidden" asp-for="TruckId" value="@t.Id" />
-
-                        <select asp-for="NewStatus"
-                                class="form-select form-select-sm"
-                                onchange="this.form.submit()">
-                            @foreach (var e in estados)
-                            {
-                                <option value="@e" selected="@(e == t.Status ? "selected" : null)">
-                                    @e
-                                </option>
-                            }
-                        </select>
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="card card-trucks">
+    <div class="card-header bg-primary text-white text-center">
+        <h4 class="mb-0">Listado de Camiones</h4>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered table-trucks mb-0 rounded-3 shadow">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var t in Model.Trucks)
+                    {
+                        <tr>
+                            <td>@t.Id</td>
+                            <td>@t.Model</td>
+                            <td>@t.Brand</td>
+                            <td>
+                                <form method="post" asp-page-handler="UpdateStatus" class="d-inline-block">
+                                    <input type="hidden" asp-for="TruckId" value="@t.Id" />
+                                    <select asp-for="NewStatus"
+                                            class="form-select form-select-sm"
+                                            onchange="this.form.submit()">
+                                        @foreach (var e in estados)
+                                        {
+                                            <option value="@e" selected="@(e == t.Status ? "selected" : null)">
+                                                @e
+                                            </option>
+                                        }
+                                    </select>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -20,3 +20,66 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.table-trucks{
+    
+}
+.table-trucks thead {
+    background-color: #2C3E50;
+    color: #ffffff;
+}
+
+.table-trucks tbody tr:hover {
+    background-color: #ecf0f1;
+}
+
+
+.table-trucks th,
+.table-trucks td {
+    vertical-align: middle;
+}
+
+
+.table-trucks .form-select-sm {
+    width: auto;
+    min-width: 8rem;
+}
+
+.card-trucks {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    margin-bottom: 1.5rem;
+}
+.table-maintenance thead {
+    background-color: #34495e;
+    color: #ecf0f1;
+}
+
+
+.table-maintenance tbody tr:hover {
+    background-color: #ecf0f1;
+}
+
+.table-maintenance th,
+.table-maintenance td {
+    vertical-align: middle;
+}
+
+
+.table-maintenance-container {
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+}
+
+
+.table-maintenance td:nth-child(4) {
+    max-width: 30ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-maintenance {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+}

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace Maintenance.Pages
 {
@@ -9,7 +10,7 @@ namespace Maintenance.Pages
         public void OnGet()
         {
             TrucksdbContext context = new TrucksdbContext();
-            this.SuppRegisterList = context.SuppRegisters.OrderBy(x => x.Id).ToList();
+            this.SuppRegisterList = context.SuppRegisters.Include(s => s.Truck).OrderBy(x => x.Id).ToList();
         }
     }
 }

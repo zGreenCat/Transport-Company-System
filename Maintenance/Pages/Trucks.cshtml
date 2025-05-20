@@ -1,19 +1,42 @@
 ﻿@page
 @model Maintenance.Pages.TrucksModel
 @{
+    var estados = new[] { "Disponible", "En viaje", "Malo", "En reparacion" };
 }
-<div class="text-center">
-    <h1 class="display-4">Listado de Camiones</h1>
-
-</div>
 
 <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Modelo</th>
+            <th>Marca</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in Model.Trucks)
+        {
+            <tr>
+                <td>@t.Id</td>
+                <td>@t.Model</td>
+                <td>@t.Brand</td>
+                <td>
+                    <form method="post" asp-page-handler="UpdateStatus">
+                        <input type="hidden" asp-for="TruckId" value="@t.Id" />
 
-    <tr><th>Id</th><th>Modelo</th><th>Marca</th><th>Estado</th></tr>
-
-    @foreach (Truck t in Model.Trucks)
-    {
-        <tr><td>@t.Id</td><td>@t.Model</td><td>@t.Brand</td><td>@t.Status</td></tr>
-    }
-
+                        <select asp-for="NewStatus"
+                                class="form-select form-select-sm"
+                                onchange="this.form.submit()">
+                            @foreach (var e in estados)
+                            {
+                                <option value="@e" selected="@(e == t.Status ? "selected" : null)">
+                                    @e
+                                </option>
+                            }
+                        </select>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
